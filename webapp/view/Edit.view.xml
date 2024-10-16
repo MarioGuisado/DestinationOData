@@ -1,0 +1,37 @@
+<mvc:View controllerName="project1.controller.Edit"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+
+    <Page id="pageEdit" title="Edit" navButtonPress="onNavBack" showNavButton="true">
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormChange3542"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                title="Edit"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <Label id="label12" text="First Name" />
+                    <Input id="ID1" required="true" value="{editModel>/firstName}" />
+                    <Label id="label22" text="Last Name" />
+                    <Input id="ID2" required="true" value="{editModel>/lastName}" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+        <VBox id="vbox2new" alignItems="Center">
+            <Button id="createButton2" text="Accept" type="Emphasized" icon="sap-icon://accept" press="onSaveChanges"/>
+        </VBox>
+    </Page>
+</mvc:View>

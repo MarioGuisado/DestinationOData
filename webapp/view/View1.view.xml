@@ -1,0 +1,69 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+    <Page id="page" title="">
+        <VBox id="vboxAjax" alignItems="Center" >
+                <Table id="ajaxTable"
+                    growing="true"
+                    growingThreshold="5"
+                    items="{
+                        path: 'localModel>/results',
+                        parameters: {
+                            expand: 'manager'
+                        }
+                    }">
+                    <headerToolbar>
+                        <OverflowToolbar id="122">
+
+                        <Label id="tableHeader21"/>
+
+                            <ToolbarSpacer id="toolbarSpacer31"/>
+                            <SearchField id="searchField31" width="auto" search=".onFilter" placeholder="User ID" customData:extraValue="userId" />
+
+                            <ToolbarSpacer id="toolbarSpacer21"/>
+                            <SearchField id="searchField21" width="auto" search=".onFilter" placeholder="First Name" customData:extraValue="firstName" />
+
+                            <ToolbarSpacer id="toolbarSpacer1"/>
+                            <SearchField id="searchField1" width="auto" search=".onFilter" placeholder="Last Name" customData:extraValue="lastName" />
+
+                            <ToolbarSpacer id="toolbarSpacer23"/>
+                            <SearchField id="searchField12" width="auto" search=".onFilter" placeholder="Manager's Name" customData:extraValue="managerLastName" />
+
+
+                        </OverflowToolbar>
+			        </headerToolbar>
+
+                    <columns>
+                        <Column>
+                            <Text text="User ID" />
+                        </Column>
+                        <Column>
+                            <Text text="First Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Last Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Manager's Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Edit" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{localModel>userId}" />
+                                <Text text="{localModel>firstName}" />
+                                <Text text="{localModel>lastName}" />
+                                <Text text="{localModel>manager/firstName}" />
+                                <Button id="editButton" text="Edit" icon="sap-icon://edit" press="onEdit"> </Button>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+    </Page>
+</mvc:View>
