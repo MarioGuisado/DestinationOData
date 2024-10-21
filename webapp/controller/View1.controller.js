@@ -12,31 +12,11 @@ function (Controller) {
                 lastName: null,
                 managerLastName: null
                 };     
-
-                var oDataModel = this.getOwnerComponent().getModel("SFDemo");
-    
-                oDataModel.read("/User", {
-                    urlParameters: {
-                        $expand: "manager"
-                    },
-                    success: function(oData) {
-                        var oLocalModel = new sap.ui.model.json.JSONModel(oData);
-                        this.getOwnerComponent().setModel(oLocalModel, "localModel");
-                        var oTable = this.byId("ajaxTable");
-                        oTable.bindItems({
-                            path: "localModel>/results",
-                            template: oTable.getBindingInfo("items").template
-                        });
-                    }.bind(this),
-                    error: function(oError) {
-                        console.error("Error: ", oError);
-                    }
-                });
             },
             onEdit: function(oEvent){
-                var oEditModel = new sap.ui.model.json.JSONModel(oEvent.getSource().getBindingContext("localModel").getObject());
+                var oEditModel = new sap.ui.model.json.JSONModel(oEvent.getSource().getBindingContext("SFDemo").getObject());
                 this.getOwnerComponent().setModel(oEditModel, "editModel");
-                var index = oEvent.getSource().getBindingContext("localModel").getProperty("userId");
+                var index = oEvent.getSource().getBindingContext("SFDemo").getProperty("userId");
                 this.getOwnerComponent().getRouter().navTo("Edit",{
                     objectId: index
                 });

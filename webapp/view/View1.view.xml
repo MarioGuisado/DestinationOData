@@ -9,9 +9,14 @@
                     growing="true"
                     growingThreshold="5"
                     items="{
-                        path: 'localModel>/results',
-                        parameters: {
-                            expand: 'manager'
+                        path: 'SFDemo>/User',
+                       parameters: {
+                            expand: 'manager',
+                            top: 5
+                        },
+                        sorter: {
+                            path: 'firstName',
+                            descending: false
                         }
                     }">
                     <headerToolbar>
@@ -55,10 +60,10 @@
                     <items>
                         <ColumnListItem>
                             <cells>
-                                <Text text="{localModel>userId}" />
-                                <Text text="{localModel>firstName}" />
-                                <Text text="{localModel>lastName}" />
-                                <Text text="{localModel>manager/firstName}" />
+                                <Text text="{SFDemo>userId}" />
+                                <Text text="{SFDemo>firstName}" />
+                                <Text text="{SFDemo>lastName}" />
+                                <Text text="{SFDemo>manager/firstName}" />
                                 <Button id="editButton" text="Edit" icon="sap-icon://edit" press="onEdit"> </Button>
                             </cells>
                         </ColumnListItem>

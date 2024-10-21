@@ -10,10 +10,10 @@ function (Controller, MessageToast) {
             this.user=undefined;
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("Edit").attachPatternMatched(this._onRouteMatched, this);
+            this.objId = undefined;
         },
         _onRouteMatched: function(oEvent){
-            var objId = oEvent.getParameter("arguments").objectId;
-            console.log(objId);
+            this.objId = oEvent.getParameter("arguments").objectId;
         },
         onSaveChanges: function() {
 
@@ -28,22 +28,24 @@ function (Controller, MessageToast) {
             aData[iIndex] = oUpdatedData;
 
             this.getView().getModel("localModel").setProperty("/results", aData);*/
-            var oUpdatedData = this.getOwnerComponent().getModel("editModel").getData();
 
-            var oDataModel = this.getOwnerComponent().getModel("localModel");
-    
-            oDataModel.update("/User", {
-                success: function(oData) {
-                    sap.m.MessageToast.show("Row edited!", {
-                        duration: 5000,                 
-                        animationDuration: 5000
-                    });
-                    this.getOwnerComponent().getRouter().navTo("RouteView1");
-                }.bind(this),
-                error: function(oError) {
-                    console.error("Error: ", oError);
-                }
+            var oDataModel = this.getOwnerComponent().getModel("SFDemo");
+            var object = "/User('" + this.objId + "')";
+
+            var data = {
+                userId: this.objId,
+                firstName: this.getView().byId("ID1").getValue(),
+                lastName: this.getView().byId("ID2").getValue()
+            };
+
+            console.log(data);
+
+            oDataModel.update(object, data, {});
+            sap.m.MessageToast.show("Row edited!", {
+                duration: 5000,                 
+                animationDuration: 5000
             });
+            this.getOwnerComponent().getRouter().navTo("RouteView1");
         },        
         onNavBack: function(){
             this.getOwnerComponent().getRouter().navTo("RouteView1");
